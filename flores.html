@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flores Amarillas — Sorpresa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body class="bg-white floral-frame">
+    <audio id="bg-music" autoplay loop>
+      <source src="./assets/musica.mp3" type="audio/mpeg" />
+      Tu navegador no soporta audio.
+    </audio>
+
+    <main class="stage">
+      <div class="emoji-rain" aria-hidden="true">
+        <span>🌻</span><span>💛</span><span>🌻</span><span>💛</span>
+        <span>🌻</span><span>💛</span><span>🌻</span><span>💛</span>
+        <span>🌻</span><span>💛</span><span>🌻</span><span>💛</span>
+        <span>🌻</span><span>💛</span><span>🌻</span><span>💛</span>
+        <span>🌻</span><span>💛</span><span>🌻</span><span>💛</span>
+      </div>
+
+      <figure class="gif-wrap">
+        <img
+          src="https://media.tenor.com/kGhQKBiMj00AAAAj/bouquet-corsages.gif"
+          alt="Gif de ramo de flores amarillas"
+        />
+      </figure>
+      <figcaption class="note">
+        Para ti, con muchas <span class="highlight">🌻</span> 💛
+      </figcaption>
+
+      <a class="back" href="./index.html">← volver</a>
+    </main>
+
+    <script>
+      const music = document.getElementById("bg-music");
+      document.body.addEventListener("click", () => {
+        if (music.paused) {
+          music.play();
+        }
+      });
+    </script>
+  </body>
+</html>

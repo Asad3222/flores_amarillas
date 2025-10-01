@@ -1,0 +1,187 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
+  color: #2a2a2a;
+}
+
+.bg-petal {
+  --y: #ffd84d;
+  --y2: #ffef9a;
+  --w: #fffdf4;
+  background: radial-gradient(
+      60vmax 60vmax at -10% -10%,
+      var(--y2),
+      transparent 60%
+    ),
+    radial-gradient(50vmax 50vmax at 110% 10%, var(--y), transparent 60%),
+    radial-gradient(40vmax 40vmax at 10% 110%, #ffec6e, transparent 60%),
+    var(--w);
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.container {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+}
+.card {
+  width: min(720px, 92vw);
+  background: #fffef7;
+  border: 1px solid #ffe484;
+  border-radius: 28px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(255, 208, 0, 0.15);
+  text-align: center;
+}
+h1 {
+  margin: 0;
+  font-size: 44px;
+}
+.subtitle {
+  margin: 10px 0 20px;
+  font-weight: 300;
+}
+.cta {
+  display: inline-block;
+  padding: 14px 22px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffd200, #ffb300);
+  color: #1f1a00;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 16px rgba(255, 193, 7, 0.28);
+  position: relative;
+}
+.cta__sparkles {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(6px 6px at 10% 30%, #fff8cc 40%, transparent 45%);
+  mix-blend-mode: screen;
+}
+.footer {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 30px;
+}
+
+.bg-white {
+  background: #fff;
+}
+.floral-frame {
+  position: relative;
+}
+.stage {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+}
+.gif-wrap img {
+  width: min(480px, 86vw);
+  border-radius: 16px;
+}
+.note {
+  text-align: center;
+  margin-top: 14px;
+}
+.highlight {
+  background: linear-gradient(transparent 60%, #fff1a3 60% 100%);
+}
+.back {
+  margin-top: 18px;
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #ffd863;
+  border-radius: 12px;
+  background: #fffdf3;
+  color: #7a5a00;
+  text-decoration: none;
+}
+
+/* Lluvia de emojis 🌻💛 */
+.emoji-rain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.emoji-rain span {
+  position: absolute;
+  top: -10%;
+  font-size: 2rem;
+  animation: fallEmoji linear infinite;
+  opacity: 0.9;
+}
+
+.emoji-rain span:nth-child(odd) {
+  animation-duration: 8s;
+}
+.emoji-rain span:nth-child(even) {
+  animation-duration: 11s;
+}
+.emoji-rain span:nth-child(3n) {
+  animation-duration: 13s;
+  font-size: 2.4rem;
+}
+.emoji-rain span:nth-child(4n) {
+  animation-duration: 9s;
+  font-size: 1.6rem;
+}
+
+.emoji-rain span:nth-child(1) {
+  left: 5%;
+  animation-delay: 0s;
+}
+.emoji-rain span:nth-child(2) {
+  left: 15%;
+  animation-delay: 2s;
+}
+.emoji-rain span:nth-child(3) {
+  left: 25%;
+  animation-delay: 4s;
+}
+.emoji-rain span:nth-child(4) {
+  left: 35%;
+  animation-delay: 1s;
+}
+.emoji-rain span:nth-child(5) {
+  left: 45%;
+  animation-delay: 3s;
+}
+.emoji-rain span:nth-child(6) {
+  left: 55%;
+  animation-delay: 5s;
+}
+.emoji-rain span:nth-child(7) {
+  left: 65%;
+  animation-delay: 2.5s;
+}
+.emoji-rain span:nth-child(8) {
+  left: 75%;
+  animation-delay: 4.5s;
+}
+.emoji-rain span:nth-child(9) {
+  left: 85%;
+  animation-delay: 6s;
+}
+.emoji-rain span:nth-child(10) {
+  left: 95%;
+  animation-delay: 1.5s;
+}
+
+@keyframes fallEmoji {
+  to {
+    transform: translateY(120vh) rotate(360deg);
+    opacity: 0.8;
+  }
+}
