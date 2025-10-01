@@ -13,12 +13,14 @@
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
   <body class="bg-white floral-frame">
-    <audio id="bg-music" autoplay loop>
+    <!-- 🎶 música -->
+    <audio id="bg-music" autoplay loop muted>
       <source src="./assets/musica.mp3" type="audio/mpeg" />
       Tu navegador no soporta audio.
     </audio>
 
     <main class="stage">
+      <!-- Lluvia de emojis -->
       <div class="emoji-rain" aria-hidden="true">
         <span>🌻</span><span>💛</span><span>🌻</span><span>💛</span>
         <span>🌻</span><span>💛</span><span>🌻</span><span>💛</span>
@@ -27,23 +29,40 @@
         <span>🌻</span><span>💛</span><span>🌻</span><span>💛</span>
       </div>
 
+      <!-- GIF -->
       <figure class="gif-wrap">
         <img
           src="https://media.tenor.com/kGhQKBiMj00AAAAj/bouquet-corsages.gif"
           alt="Gif de ramo de flores amarillas"
         />
       </figure>
+
       <figcaption class="note">
         Para ti, con muchas <span class="highlight">🌻</span> 💛
       </figcaption>
 
-      <a class="back" href="./index.html">← volver</a>
+      <!-- Botón Muak -->
+      <a class="back" id="muak-btn" href="./index.html">Muak 💋</a>
     </main>
 
     <script>
       const music = document.getElementById("bg-music");
-      document.body.addEventListener("click", () => {
+      const muakBtn = document.getElementById("muak-btn");
+
+
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          music.muted = false;
+          music.play().catch(() => {
+
+            console.log(" Muak 💛");
+          });
+        }, 500);
+      });
+
+      muakBtn.addEventListener("click", () => {
         if (music.paused) {
+          music.muted = false;
           music.play();
         }
       });
