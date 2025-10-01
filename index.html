@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Flores Amarillas — Inicio</title>
+    <title>Flores Amarillas — Para Ti Bebesota</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,25 +11,160 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/styles.css" />
+    <style>
+      .hidden {
+        display: none !important;
+      }
+
+      .fade-out {
+        animation: fadeOut 0.8s forwards;
+      }
+      .fade-in {
+        animation: fadeIn 1s forwards;
+      }
+
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .sound-hint {
+        position: fixed;
+        inset: auto 12px 12px auto;
+        background: #fffdf3;
+        border: 1px solid #ffd863;
+        border-radius: 12px;
+        padding: 8px 12px;
+        font-size: 12px;
+        color: #7a5a00;
+        box-shadow: 0 6px 18px rgba(255, 193, 7, 0.25);
+        opacity: 0.95;
+        display: none;
+        user-select: none;
+        pointer-events: none;
+        z-index: 99;
+      }
+      .sound-hint.show {
+        display: block;
+      }
+    </style>
   </head>
+
   <body class="bg-petal">
-    <div class="floating f1"></div>
-    <div class="floating f2"></div>
-    <div class="floating f3"></div>
+    <audio id="bg-music" preload="auto" loop>
+      <source src="./assets/musica.mp3" type="audio/mpeg" />
+      Tu navegador no soporta audio.
+    </audio>
 
-    <main class="container">
-      <section class="card">
-        <h1>Para Ti Bebesota</h1>
-        <p class="subtitle">🌻💛</p>
+    <div id="landing">
+      <div class="floating f1"></div>
+      <div class="floating f2"></div>
+      <div class="floating f3"></div>
 
-        <a class="cta" href="flores.html"
-          >haz click aqui bebesota<span class="cta__sparkles"></span
-        ></a>
+      <main class="container">
+        <section class="card">
+          <h1>Para Ti Bebesota</h1>
+          <p class="subtitle">🌻💛</p>
 
-        <p class="tiny">Hecho con amore</p>
-      </section>
-    </main>
+          <a class="cta" href="#" id="reveal">
+            haz click aqui bebesota
+            <span class="cta__sparkles"></span>
+          </a>
 
-    <footer class="footer"></footer>
+          <p class="tiny">Hecho con amore</p>
+        </section>
+      </main>
+
+      <footer class="footer"></footer>
+    </div>
+
+    <div id="surprise" class="hidden">
+      <main class="stage">
+        <div class="emoji-rain" aria-hidden="true">
+          <span>🌻</span><span>💛</span><span>🌻</span><span>💛</span>
+          <span>🌻</span><span>💛</span><span>🌻</span><span>💛</span>
+          <span>🌻</span><span>💛</span><span>🌻</span><span>💛</span>
+          <span>🌻</span><span>💛</span><span>🌻</span><span>💛</span>
+          <span>🌻</span><span>💛</span><span>🌻</span><span>💛</span>
+        </div>
+
+        <figure class="gif-wrap" aria-label="Ramo de flores amarillas">
+          <img
+            src="https://media.tenor.com/kGhQKBiMj00AAAAj/bouquet-corsages.gif"
+            alt="Gif de ramo de flores amarillas"
+          />
+        </figure>
+
+        <figcaption class="note">
+          Para ti, con muchas <span class="highlight">🌻</span> 💛
+        </figcaption>
+      </main>
+
+      <div id="sound-hint" class="sound-hint">
+        si no suena, toca la pantalla 🔊
+      </div>
+    </div>
+
+    <script>
+      const revealBtn = document.getElementById("reveal");
+      const landing = document.getElementById("landing");
+      const surprise = document.getElementById("surprise");
+      const music = document.getElementById("bg-music");
+      const hint = document.getElementById("sound-hint");
+
+      revealBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        landing.classList.add("fade-out");
+
+        landing.addEventListener(
+          "animationend",
+          async () => {
+            landing.classList.add("hidden");
+            surprise.classList.remove("hidden");
+            surprise.classList.add("fade-in");
+
+            document.body.classList.remove("bg-petal");
+            document.body.classList.add("bg-white", "floral-frame");
+
+            try {
+              music.currentTime = 0;
+              music.muted = false;
+              await music.play();
+              hint?.classList.remove("show");
+            } catch (err) {
+              hint?.classList.add("show");
+            }
+          },
+          { once: true }
+        );
+      });
+
+      const unlock = async () => {
+        try {
+          music.muted = false;
+          await music.play();
+          hint?.classList.remove("show");
+          ["pointerdown", "click", "touchstart", "keydown"].forEach((ev) =>
+            document.removeEventListener(ev, unlock, { once: true })
+          );
+        } catch (_) {}
+      };
+      ["pointerdown", "click", "touchstart", "keydown"].forEach((ev) =>
+        document.addEventListener(ev, unlock, { once: true, passive: true })
+      );
+    </script>
   </body>
 </html>
